@@ -1,80 +1,86 @@
 
-#
+#Display only the Transaction ID, Date, and Customer ID for all records.
 SELECT `Transaction ID`, Date, `Customer ID`
 FROM `Rental.Retail_sales`;
 
-
-#
+#Display all the distinct product categories in the dataset
 SELECT DISTINCT `product category`
 FROM `Rental.Retail_sales`;
-#
+
+#Display all the distinct gender values in the dataset.
 SELECT DISTINCT `gender`
 FROM `Rental.Retail_sales`;
-#
+
+#Display all transactions where the Age is greater than 40.
 SELECT *
 FROM `Rental.Retail_sales`
 WHERE Age > 40;
-#
+
+#Display all transactions where the Price per Unit is between 100 and 500.
 SELECT *
 FROM `Rental.Retail_sales`
 WHERE `Price per Unit` BETWEEN 100 AND 500;
-#
+
+#Display all transactions where the Product Category is either 'Beauty' or 'Electronics'.
 SELECT *
 FROM `Rental.Retail_sales`
 WHERE `product category` IN ('Beauty', 'Electronics');
-#
+
+#Display all transactions where the Product Category is not 'Clothing'.
 SELECT *
 FROM `Rental.Retail_sales`
 WHERE`Product Category` NOT IN ('Clothing');
-#
+
+#Display all transactions where the Quantity is greater than or equal to 3.
 SELECT *
 FROM `Rental.Retail_sales`
 WHERE `Quantity` >= 3;
-#
+
+#. Count the total number of transactions
 SELECT COUNT(*) AS `total transactions`
 FROM `Rental.Retail_sales`;
-#
+
+#Find the average Age of customers.
 SELECT AVG(Age) AS `average age`
 FROM `Rental.Retail_sales`;
-#
+
+#Find the total quantity of products sold.
 SELECT SUM(Quantity) AS `total_quantity_sold`
 FROM `Rental.Retail_sales`;
-#
+
+#Find the maximum Total Amount spent in a single transaction.
 SELECT MAX(`Total Amount`) AS `max_transaction_amount`
 FROM `Rental.Retail_sales`;
-#
+
+#Find the minimum Price per Unit in the dataset
 SELECT MIN(`Price per Unit`) AS `min_price_per_unit`
 FROM `Rental.Retail_sales`;
-#
+
+#Find the number of transactions per Product Category.
 SELECT `product category`, COUNT(*) AS `num_transactions`
 FROM `Rental.Retail_sales`
 GROUP BY `product category`;
-#
+
+#. Find the total revenue (Total Amount) per gender.
 SELECT `gender`, SUM(`Total Amount`) AS `total_revenue`
 FROM `Rental.Retail_sales`
 GROUP BY `gender`;
-#
+
+#. Find the average Price per Unit per product category.
 SELECT `product category`, AVG(`Price per Unit`) AS `avg_price_per_unit`
 FROM `Rental.Retail_sales`
 GROUP BY `product category`;
-#
+
+#Find the total revenue per product category where total revenue is greater than 10,000.
 SELECT `product category`, SUM(`Total Amount`) AS `total revenue`
 FROM `Rental.Retail_sales`
 GROUP BY `product category`
 HAVING SUM(`Total Amount`) > 10000;
-#
-SELECT `product category`, AVG(`Quantity`) AS `avg quantity`
-FROM `Rental.Retail_sales`
-GROUP BY `product category`
-HAVING AVG(`Quantity`) > 2;
-#
-SELECT `Total Amount`,
-       CASE 
-           WHEN `Total Amount` > 1000 THEN 'High'
-           ELSE 'Low'
-       END AS `Spending Level`
-FROM `Rental.Retail_sales`;
-#
+
+#Display a new column called Age_Group that labels customers as:
+•	'Youth' if Age < 30
+•	'Adult' if Age is between 30 and 59
+•	'Senior' if Age >= 60
 SELECT `Age`,
        CASE 
            WHEN `Age` < 18 THEN 'Youth'
