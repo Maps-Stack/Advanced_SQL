@@ -1,0 +1,85 @@
+
+#
+SELECT `Transaction ID`, Date, `Customer ID`
+FROM `Rental.Retail_sales`;
+
+
+#
+SELECT DISTINCT `product category`
+FROM `Rental.Retail_sales`;
+#
+SELECT DISTINCT `gender`
+FROM `Rental.Retail_sales`;
+#
+SELECT *
+FROM `Rental.Retail_sales`
+WHERE Age > 40;
+#
+SELECT *
+FROM `Rental.Retail_sales`
+WHERE `Price per Unit` BETWEEN 100 AND 500;
+#
+SELECT *
+FROM `Rental.Retail_sales`
+WHERE `product category` IN ('Beauty', 'Electronics');
+#
+SELECT *
+FROM `Rental.Retail_sales`
+WHERE`Product Category` NOT IN ('Clothing');
+#
+SELECT *
+FROM `Rental.Retail_sales`
+WHERE `Quantity` >= 3;
+#
+SELECT COUNT(*) AS `total transactions`
+FROM `Rental.Retail_sales`;
+#
+SELECT AVG(Age) AS `average age`
+FROM `Rental.Retail_sales`;
+#
+SELECT SUM(Quantity) AS `total_quantity_sold`
+FROM `Rental.Retail_sales`;
+#
+SELECT MAX(`Total Amount`) AS `max_transaction_amount`
+FROM `Rental.Retail_sales`;
+#
+SELECT MIN(`Price per Unit`) AS `min_price_per_unit`
+FROM `Rental.Retail_sales`;
+#
+SELECT `product category`, COUNT(*) AS `num_transactions`
+FROM `Rental.Retail_sales`
+GROUP BY `product category`;
+#
+SELECT `gender`, SUM(`Total Amount`) AS `total_revenue`
+FROM `Rental.Retail_sales`
+GROUP BY `gender`;
+#
+SELECT `product category`, AVG(`Price per Unit`) AS `avg_price_per_unit`
+FROM `Rental.Retail_sales`
+GROUP BY `product category`;
+#
+SELECT `product category`, SUM(`Total Amount`) AS `total revenue`
+FROM `Rental.Retail_sales`
+GROUP BY `product category`
+HAVING SUM(`Total Amount`) > 10000;
+#
+SELECT `product category`, AVG(`Quantity`) AS `avg quantity`
+FROM `Rental.Retail_sales`
+GROUP BY `product category`
+HAVING AVG(`Quantity`) > 2;
+#
+SELECT `Total Amount`,
+       CASE 
+           WHEN `Total Amount` > 1000 THEN 'High'
+           ELSE 'Low'
+       END AS `Spending Level`
+FROM `Rental.Retail_sales`;
+#
+SELECT `Age`,
+       CASE 
+           WHEN `Age` < 18 THEN 'Youth'
+           WHEN `Age` BETWEEN 18 AND 64 THEN 'Adult'
+           ELSE 'Senior'
+       END AS `Age Group`
+FROM `Rental.Retail_sales`;SELECT *
+FROM `Rental.Retail_sales`;
